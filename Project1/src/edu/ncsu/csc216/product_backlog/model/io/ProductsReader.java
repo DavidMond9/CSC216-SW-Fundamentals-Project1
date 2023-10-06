@@ -11,8 +11,8 @@ import edu.ncsu.csc216.product_backlog.model.task.Task;
 /**
  * 
  */
-public class ProductsReaders {
-	public ProductsReaders() {
+public class ProductsReader {
+	public ProductsReader() {
 		
 	}
 	public static ArrayList<Product> readProductsFile(String fileName){
