@@ -98,7 +98,7 @@ public class Task {
 	/**
 	 * Represents the type enum.
 	 */
-	public enum Type {FEATURE, BUG, TECHNICAL_WORK, KNOWLEDGE_ACQUISITION }
+	public enum Type { FEATURE, BUG, TECHNICAL_WORK, KNOWLEDGE_ACQUISITION }
 
 	
 	/**
@@ -156,75 +156,116 @@ public class Task {
 	}
 	
 	/**
+	 * Gets the creator.
 	 * @return the creator
 	 */
 	public String getCreator() {
 		return creator;
 	}
 	/**
+	 * Sets the creator.
 	 * @param creator the creator to set
 	 */
 	private void setCreator(String creator) {
 		this.creator = creator;
 	}
 	/**
+	 * Gets the owner.
 	 * @return the owner
 	 */
 	public String getOwner() {
 		return owner;
 	}
 	/**
+	 * Sets the owner.
 	 * @param owner the owner to set
 	 */
 	private void setOwner(String owner) {
 		this.owner = owner;
 	}
 	/**
+	 * Checks isVerified.
 	 * @return the isVerified
 	 */
 	public boolean isVerified() {
 		return isVerified;
 	}
 	/**
+	 * Sets isVerified.
 	 * @param isVerified the isVerified to set
 	 */
 	private void setVerified(boolean isVerified) {
 		this.isVerified = isVerified;
 	}
 	/**
+	 * Gets list of notes.
 	 * @return the notes
 	 */
 	public ArrayList<String> getNotes() {
 		return notes;
 	}
 	/**
+	 * Set list of notes.
 	 * @param notes the notes to set
 	 */
 	private void setNotes(ArrayList<String> notes) {
 		this.notes = notes;
 	}
+	/**
+	 * Set type.
+	 * @param type Returns type of type>
+	 */
 	private void setType(Type type) {
-		
+	
 	}
+	/**
+	 * Adds note to list.
+	 * @param note String of note.
+	 * @return Returns an int for note.
+	 */
 	public int addNoteToList(String note) {
 		return 0;
 	}
+	/**
+	 * Sets the state.
+	 * @param state to set.
+	 */
 	private void setState(String state) {
 		
 	}
+	/**
+	 * Gets the state name.
+	 * @return the state name.
+	 */
 	public String getStateName() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	/**
+	 * Set the type from string.
+	 * @param type in string format.
+	 */
 	private void setTypeFromString(String type) {
 		
 	}
+	/**
+	 * Gets the type
+	 * @return Returns the type
+	 */
 	public Type getType() {
 		return null;
 	}
+	/**
+	 * Gets type short name.
+	 * @return Returns type short name.
+	 */
 	public String getTypeShortName() {
 		return null;
 	}
+	/**
+	 * Gets type long name.
+	 * @return Returns type long name.
+	 */
 	public String getTypeLongName() {
 		return null;
 	}
@@ -284,15 +325,33 @@ public class Task {
 		String getStateName();
 	
 	}
+	/**
+	 * BacklogState class, implements TaskState and has two useful methods updateState and getStateName.
+	 */
 	public class BacklogState implements TaskState {
+		/**
+		 * Constructor for this specific state.
+		 */
 		private BacklogState() {
 			
 		}
+		/**
+		 * Update the Task based on the given Command
+		 * An UnsupportedOperationException is thrown if the Command is not a
+		 * is not a valid action for the given state.  
+		 * @param c Command describing the action that will update the Task
+		 * state.
+		 * @throws UnsupportedOperationException if the Command is not a valid action
+		 * for the given state.
+		 */
 		@Override
 		public void updateState(Command c) {
 			// TODO Auto-generated method stub
 		}
-
+		/**
+		 * Returns the name of the current state as a String.
+		 * @return the name of the current state as a String.
+		 */
 		@Override
 		public String getStateName() {
 			// TODO Auto-generated method stub
@@ -300,16 +359,34 @@ public class Task {
 		}
 		
 	}
+	/**
+	 * OwnedState class, implements TaskState and has two useful methods updateState and getStateName.
+	 */
 	public class OwnedState implements TaskState {
+		/**
+		 * Constructor for this specific state.
+		 */
 		private OwnedState() {
 			
 		}
+		/**
+		 * Update the Task based on the given Command
+		 * An UnsupportedOperationException is thrown if the Command is not a
+		 * is not a valid action for the given state.  
+		 * @param c Command describing the action that will update the Task
+		 * state.
+		 * @throws UnsupportedOperationException if the Command is not a valid action
+		 * for the given state.
+		 */
 		@Override
 		public void updateState(Command c) {
 			// TODO Auto-generated method stub
 			
 		}
-
+		/**
+		 * Returns the name of the current state as a String.
+		 * @return the name of the current state as a String.
+		 */
 		@Override
 		public String getStateName() {
 			// TODO Auto-generated method stub
@@ -317,16 +394,34 @@ public class Task {
 		}
 		
 	}
+	/**
+	 * ProcessingState class, implements TaskState and has two useful methods updateState and getStateName.
+	 */
 	public class ProcessingState implements TaskState {
+		/**
+		 * Constructor for this specific state.
+		 */
 		private ProcessingState() {
 			
 		}
+		/**
+		 * Update the Task based on the given Command
+		 * An UnsupportedOperationException is thrown if the Command is not a
+		 * is not a valid action for the given state.  
+		 * @param c Command describing the action that will update the Task
+		 * state.
+		 * @throws UnsupportedOperationException if the Command is not a valid action
+		 * for the given state.
+		 */
 		@Override
 		public void updateState(Command c) {
 			// TODO Auto-generated method stub
 			
 		}
-
+		/**
+		 * Returns the name of the current state as a String.
+		 * @return the name of the current state as a String.
+		 */
 		@Override
 		public String getStateName() {
 			// TODO Auto-generated method stub
@@ -334,16 +429,34 @@ public class Task {
 		}
 		
 	}
+	/**
+	 * VerifyingState class, implements TaskState and has two useful methods updateState and getStateName.
+	 */
 	public class VerifyingState implements TaskState {
+		/**
+		 * Constructor for this specific state.
+		 */
 		private VerifyingState() {
 			
 		}
+		/**
+		 * Update the Task based on the given Command
+		 * An UnsupportedOperationException is thrown if the Command is not a
+		 * is not a valid action for the given state.  
+		 * @param c Command describing the action that will update the Task
+		 * state.
+		 * @throws UnsupportedOperationException if the Command is not a valid action
+		 * for the given state.
+		 */
 		@Override
 		public void updateState(Command c) {
 			// TODO Auto-generated method stub
 			
 		}
-
+		/**
+		 * Returns the name of the current state as a String.
+		 * @return the name of the current state as a String.
+		 */
 		@Override
 		public String getStateName() {
 			// TODO Auto-generated method stub
@@ -351,16 +464,34 @@ public class Task {
 		}
 		
 	}
+	/**
+	 * DoneState class, implements TaskState and has two useful methods updateState and getStateName.
+	 */
 	public class DoneState implements TaskState {
+		/**
+		 * Constructor for this specific state.
+		 */
 		private DoneState() {
 			
 		}
+		/**
+		 * Update the Task based on the given Command
+		 * An UnsupportedOperationException is thrown if the Command is not a
+		 * is not a valid action for the given state.  
+		 * @param c Command describing the action that will update the Task
+		 * state.
+		 * @throws UnsupportedOperationException if the Command is not a valid action
+		 * for the given state.
+		 */
 		@Override
 		public void updateState(Command c) {
 			// TODO Auto-generated method stub
 			
 		}
-
+		/**
+		 * Returns the name of the current state as a String.
+		 * @return the name of the current state as a String.
+		 */
 		@Override
 		public String getStateName() {
 			// TODO Auto-generated method stub
@@ -368,16 +499,34 @@ public class Task {
 		}
 		
 	}
+	/**
+	 * RejectedState class, implements TaskState and has two useful methods updateState and getStateName.
+	 */
 	public class RejectedState implements TaskState {
+		/**
+		 * Constructor for this specific state.
+		 */
 		private RejectedState() {
 			
 		}
+		/**
+		 * Update the Task based on the given Command
+		 * An UnsupportedOperationException is thrown if the Command is not a
+		 * is not a valid action for the given state.  
+		 * @param c Command describing the action that will update the Task
+		 * state.
+		 * @throws UnsupportedOperationException if the Command is not a valid action
+		 * for the given state.
+		 */
 		@Override
 		public void updateState(Command c) {
 			// TODO Auto-generated method stub
 			
 		}
-
+		/**
+		 * Returns the name of the current state as a String.
+		 * @return the name of the current state as a String.
+		 */
 		@Override
 		public String getStateName() {
 			// TODO Auto-generated method stub

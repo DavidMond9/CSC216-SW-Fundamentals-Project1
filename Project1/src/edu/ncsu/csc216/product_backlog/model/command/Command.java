@@ -25,7 +25,7 @@ public class Command {
 	/**
 	 * Enum for the representation of CommandValue.
 	 */
-	public enum CommandValue {BACKLOG, CLAIM, PROCESS, VERIFY, COMPLETE, REJECT}
+	public enum CommandValue { BACKLOG, CLAIM, PROCESS, VERIFY, COMPLETE, REJECT }
 	
 	/**
 	 * Creates a command.
