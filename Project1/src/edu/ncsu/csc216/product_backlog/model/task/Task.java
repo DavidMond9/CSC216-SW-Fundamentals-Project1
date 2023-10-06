@@ -74,7 +74,7 @@ public class Task {
 	/**
 	 * Represents the knowledge acquisition name.
 	 */
-	public static final String KNOWLEDGE_ACQUISTION_NAME = "Knowledge Acquisition";
+	public static final String KNOWLEDGE_ACQUISITION_NAME = "Knowledge Acquisition";
 	/**
 	 * Represents the t feature.
 	 */
