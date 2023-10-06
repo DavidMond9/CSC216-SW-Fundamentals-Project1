@@ -212,6 +212,10 @@ public class Task {
 	private void setState(String state) {
 		
 	}
+	public String getStateName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	private void setTypeFromString(String type) {
 		
 	}
