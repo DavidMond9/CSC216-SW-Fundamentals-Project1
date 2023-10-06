@@ -49,4 +49,7 @@ public class Product {
 	public void executeCommand(int id, Command c) {
 		
 	}
+	public void deleteTaskById(int id) {
+		
+	}
 }
