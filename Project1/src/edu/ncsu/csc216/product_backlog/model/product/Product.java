@@ -72,26 +72,26 @@ public class Product {
 		counter = maxId + 1;
 	}
 	/**
-	 * Checks for an emptyList.
-	 */
-	private void emptyList() {
-		
-	}
-	/**
 	 * Add a task.
 	 * @param task to add.
 	 */
 	public void addTask(Task task) {
+		int idx = 0;
 		for(int i = 0; i < list.size(); i++) {
 			if(task.getTaskId() == list.get(i).getTaskId()) {
 				throw new IllegalArgumentException("Task cannot be added.");
 			}
 		}
+		//loop to get index to insert
+		for(int i = 0; i < list.size(); i++) {
+			if(task.getTaskId() <= list.get(i).getTaskId()) {
+				idx = i;
+				break;
+			}
+		}
 		
-		//sorting algorithm here
+		list.add(idx, task);
 		
-		
-		list.add(task);
 		//update counter
 		counter += 1;
 	}
