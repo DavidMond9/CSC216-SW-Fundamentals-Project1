@@ -1,5 +1,6 @@
 package edu.ncsu.csc216.product_backlog.model.product;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.ncsu.csc216.product_backlog.model.command.Command;
@@ -21,11 +22,18 @@ public class Product {
 	private int counter;
 	
 	/**
+	 * Field to hold list of tasks.
+	 */
+	private ArrayList<Task> list;
+	
+	/**
 	 * Constructor for product, creates a Product and has a name.
 	 * @param name Name of the product
 	 */
 	public Product(String name) {
-		
+		setProductName(name);
+		list = new ArrayList<Task>();
+		counter = 1;
 	}
 
 	/**
@@ -41,13 +49,27 @@ public class Product {
 	 * @param productName the productName to set
 	 */
 	public void setProductName(String productName) {
+		if(productName == null || "".equals(productName)) {
+			throw new IllegalArgumentException("Invalid product name.");
+		}
 		this.productName = productName;
 	}
 	/**
 	 * Sets the task counter.
 	 */
 	private void setTaskCounter() {
-		
+		int maxId = 0;
+		if(list.size() == 0) {
+			counter = 1;
+		}
+		else {
+			for(int i = 0; i < list.size(); i++) {
+				if(list.get(i).getTaskId() > maxId) {
+					maxId = list.get(i).getTaskId();
+				}
+			}
+		}
+		counter = maxId + 1;
 	}
 	/**
 	 * Checks for an emptyList.
@@ -60,7 +82,18 @@ public class Product {
 	 * @param task to add.
 	 */
 	public void addTask(Task task) {
+		for(int i = 0; i < list.size(); i++) {
+			if(task.getTaskId() == list.get(i).getTaskId()) {
+				throw new IllegalArgumentException("Task cannot be added.");
+			}
+		}
 		
+		//sorting algorithm here
+		
+		
+		list.add(task);
+		//update counter
+		counter += 1;
 	}
 	/**
 	 * Add a task with title type creator and note.
@@ -70,14 +103,16 @@ public class Product {
 	 * @param note of task
 	 */
 	public void addTask(String title, Type type, String creator, String note) {
-		
+		Task task = new Task(counter, title, type, creator, note);
+		//update counter
+		counter += 1;
 	}
 	/**
 	 * Get list of tasks.
 	 * @return Returns the list of tasks.
 	 */
 	public List<Task> getTasks(){
-		return null;
+		return list;
 	}
 	/**
 	 * Get a task by id.
@@ -85,6 +120,11 @@ public class Product {
 	 * @return Returns a Task.
 	 */
 	public Task getTaskById(int id) {
+		for(int i = 0; i < list.size(); i++) {
+			if(list.get(i).getTaskId() == id) {
+				return list.get(i);
+			}
+		}
 		return null;
 	}
 	/**
@@ -93,13 +133,21 @@ public class Product {
 	 * @param c the command itself.
 	 */
 	public void executeCommand(int id, Command c) {
-		
+		for(int i = 0; i < list.size(); i++) {
+			if(list.get(i).getTaskId() == id) {
+				list.get(i).update(c);
+			}
+		}
 	}
 	/**
 	 * Delete a task by ID
 	 * @param id the id used to delete a task.
 	 */
 	public void deleteTaskById(int id) {
-		
+		for(int i = 0; i < list.size(); i++) {
+			if(list.get(i).getTaskId() == id) {
+				list.remove(list.get(i));
+			}
+		}
 	}
 }

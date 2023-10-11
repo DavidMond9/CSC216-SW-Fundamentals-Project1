@@ -136,7 +136,7 @@ public class BacklogManager {
 	/**
 	 * Reset the manager.
 	 */
-	public void resetManager() {
+	protected void resetManager() {
 		
 	}
 }

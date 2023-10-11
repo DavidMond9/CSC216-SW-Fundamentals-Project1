@@ -110,7 +110,13 @@ public class Task {
 	 * @param note Represents the note of the task.
 	 */
 	public Task(int id, String title, Type type, String creator, String note) {
-		
+		if(id <= 0 || title == null || type == null || creator == null || note == null||
+				"".equals(title) || "".equals(creator) || "".equals(note)) {
+			throw new IllegalArgumentException("Invalid task information.");
+		}
+		//new task here?
+		owner = UNOWNED;
+		notes.add(note);
 	}
 	/**
 	 * Task constructor with 8 parameters.
@@ -124,7 +130,16 @@ public class Task {
 	 * @param notes Represents the notes of the task.
 	 */
 	public Task(int id, String state, String title, String type, String creator, String owner, String verified, ArrayList<String> notes) {
-		
+		if(id <= 0 || state == null || title == null || type == null || creator == null || owner == null || verified == null || 
+				notes == null || "".equals(state) || "".equals(title) || "".equals(type) || "".equals(creator) || "".equals(owner) || "".equals(verified)) {
+			throw new IllegalArgumentException("Invalid task information.");
+		}
+		taskId = id;
+		this.title = title;
+		this.creator = creator;
+		this.owner = owner;
+		isVerified = verified != null; //not sure about this
+		this.notes = notes;
 	}
 	/**
 	 * Gets the taskId
@@ -138,6 +153,9 @@ public class Task {
 	 * @param taskId the taskId to set
 	 */
 	private void setTaskId(int taskId) {
+		if(taskId <= 0) {
+			throw new IllegalArgumentException("Invalid task information.");
+		}
 		this.taskId = taskId;
 	}
 	/**
@@ -152,6 +170,9 @@ public class Task {
 	 * @param title the title to set
 	 */
 	private void setTitle(String title) {
+		if(title == null || "".equals(title)) {
+			throw new IllegalArgumentException("Invalid task information.");
+		}
 		this.title = title;
 	}
 	
@@ -167,6 +188,9 @@ public class Task {
 	 * @param creator the creator to set
 	 */
 	private void setCreator(String creator) {
+		if(creator == null || "".equals(creator)) {
+			throw new IllegalArgumentException("Invalid task information.");
+		}
 		this.creator = creator;
 	}
 	/**
@@ -181,6 +205,9 @@ public class Task {
 	 * @param owner the owner to set
 	 */
 	private void setOwner(String owner) {
+		if(owner == null || "".equals(owner)) {
+			throw new IllegalArgumentException("Invalid task information.");
+		}
 		this.owner = owner;
 	}
 	/**
@@ -209,6 +236,9 @@ public class Task {
 	 * @param notes the notes to set
 	 */
 	private void setNotes(ArrayList<String> notes) {
+		if(notes == null) {
+			throw new IllegalArgumentException("Invalid task information.");
+		}
 		this.notes = notes;
 	}
 	/**
@@ -224,6 +254,10 @@ public class Task {
 	 * @return Returns an int for note.
 	 */
 	public int addNoteToList(String note) {
+		if(note == null || "".equals(note)) {
+			throw new IllegalArgumentException("Invalid task information.");
+		}
+		//work to be done
 		return 0;
 	}
 	/**

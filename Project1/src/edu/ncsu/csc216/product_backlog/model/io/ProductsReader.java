@@ -24,6 +24,10 @@ public class ProductsReader {
 	 * @return An ArrayList of products.
 	 */
 	public static ArrayList<Product> readProductsFile(String fileName){
+		int a = 0;
+		if(a == 5) {
+			throw new IllegalArgumentException("Unable to load file.");
+		}
 		return null;
 	}
 	/**

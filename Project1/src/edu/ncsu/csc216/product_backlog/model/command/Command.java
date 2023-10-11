@@ -47,6 +47,9 @@ public class Command {
 				throw new IllegalArgumentException(COMMAND_ERROR_MESSAGE);
 			}
 		}
+		
+		this.owner = owner;
+		note = noteText;
 	}
 	
 	/**
