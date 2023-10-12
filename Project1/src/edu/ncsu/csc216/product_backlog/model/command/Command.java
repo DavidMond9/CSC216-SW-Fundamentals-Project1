@@ -27,6 +27,7 @@ public class Command {
 	 */
 	public enum CommandValue { BACKLOG, CLAIM, PROCESS, VERIFY, COMPLETE, REJECT }
 	
+	private CommandValue c;
 	/**
 	 * Creates a command.
 	 * @param c Represents the CommandValue.
@@ -50,6 +51,7 @@ public class Command {
 		
 		this.owner = owner;
 		note = noteText;
+		this.c = c;
 	}
 	
 	/**
@@ -57,7 +59,7 @@ public class Command {
 	 * @return the command
 	 */
 	public CommandValue getCommand() {
-		return null;
+		return c;
 	}
 	/**
 	 * Gets the note.

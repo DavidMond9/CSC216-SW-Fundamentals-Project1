@@ -6,6 +6,7 @@ package edu.ncsu.csc216.product_backlog.model.task;
 import java.util.ArrayList;
 
 import edu.ncsu.csc216.product_backlog.model.command.Command;
+import edu.ncsu.csc216.product_backlog.model.command.Command.CommandValue;
 
 /**
  * Task class. Represents the task with many useful methods and fields such as title, creator, id, and more. 
@@ -35,6 +36,12 @@ public class Task {
 	 * Represents the notes list.
 	 */
 	private ArrayList<String> notes;
+	
+	/**
+	 * Represents the current state of the task.
+	 */
+	private TaskState currentState;
+	
 	/**
 	 * Represents the backlog name.
 	 */
@@ -99,28 +106,29 @@ public class Task {
 	 * Represents the type enum.
 	 */
 	public enum Type { FEATURE, BUG, TECHNICAL_WORK, KNOWLEDGE_ACQUISITION }
-
 	
 	/**
+	 * Represents the type of the task.
+	 */
+	private Type type;
+	/**
 	 * Task constructor with 5 parameters.
-	 * @param id Represents the id of the task.
+	 * @param taskId Represents the id of the task.
 	 * @param title Represents the title of the task.
 	 * @param type Represents the type of the task.
 	 * @param creator Represents the creator of the task.
 	 * @param note Represents the note of the task.
 	 */
-	public Task(int id, String title, Type type, String creator, String note) {
-		if(id <= 0 || title == null || type == null || creator == null || note == null||
-				"".equals(title) || "".equals(creator) || "".equals(note)) {
-			throw new IllegalArgumentException("Invalid task information.");
-		}
-		//new task here?
-		owner = UNOWNED;
-		notes.add(note);
+	public Task(int taskId, String title, Type type, String creator, String note) {
+		
+		this(taskId, "", title, "", creator, "", UNOWNED, new ArrayList<String>());
+		setType(type);
+		addNoteToList(note);
+		
 	}
 	/**
 	 * Task constructor with 8 parameters.
-	 * @param id Represents the id of the task.
+	 * @param taskId Represents the id of the task.
 	 * @param state Represents the state of the task.
 	 * @param title Represents the title of the task.
 	 * @param type Represents the type of the task.
@@ -129,17 +137,15 @@ public class Task {
 	 * @param verified Represents the verified state of the task.
 	 * @param notes Represents the notes of the task.
 	 */
-	public Task(int id, String state, String title, String type, String creator, String owner, String verified, ArrayList<String> notes) {
-		if(id <= 0 || state == null || title == null || type == null || creator == null || owner == null || verified == null || 
-				notes == null || "".equals(state) || "".equals(title) || "".equals(type) || "".equals(creator) || "".equals(owner) || "".equals(verified)) {
-			throw new IllegalArgumentException("Invalid task information.");
-		}
-		taskId = id;
-		this.title = title;
-		this.creator = creator;
-		this.owner = owner;
-		isVerified = verified != null; //not sure about this
-		this.notes = notes;
+	public Task(int taskId, String state, String title, String type, String creator, String owner, String verified, ArrayList<String> notes) {
+		setTaskId(taskId);
+		setState(state);
+		setTitle(title);
+		setTypeFromString(type);
+		setCreator(creator);
+		setOwner(owner);
+		setVerified(verified);
+		setNotes(notes);
 	}
 	/**
 	 * Gets the taskId
@@ -221,8 +227,18 @@ public class Task {
 	 * Sets isVerified.
 	 * @param isVerified the isVerified to set
 	 */
-	private void setVerified(boolean isVerified) {
-		this.isVerified = isVerified;
+	private void setVerified(String isVerified) {
+		if("true".equals(isVerified)) {
+			this.isVerified = true;
+
+		}
+		else if("false".equals(isVerified)) {
+			this.isVerified = false;
+
+		}
+		else {
+			throw new IllegalArgumentException("Invalid input.");
+		}
 	}
 	/**
 	 * Gets list of notes.
@@ -246,7 +262,10 @@ public class Task {
 	 * @param type Returns type of type>
 	 */
 	private void setType(Type type) {
-	
+		if(type == null) {
+			throw new IllegalArgumentException("INvalid task information.");
+		}
+		this.type = type;
 	}
 	/**
 	 * Adds note to list.
@@ -265,21 +284,58 @@ public class Task {
 	 * @param state to set.
 	 */
 	private void setState(String state) {
-		
+		if(state.equals(BACKLOG_NAME)) {
+			currentState = new BacklogState();
+		}
+		if(state.equals(VERIFYING_NAME)) {
+			currentState = new VerifyingState();
+		}
+		if(state.equals(OWNED_NAME)) {
+			currentState = new OwnedState();
+		}
+		if(state.equals(PROCESSING_NAME)) {
+			currentState = new ProcessingState();
+		}
+		if(state.equals(DONE_NAME)) {
+			currentState = new DoneState();
+		}
+		if(state.equals(REJECTED_NAME)) {
+			currentState = new RejectedState();
+		}
+		else {
+			throw new IllegalArgumentException("Invalid task information.");
+		}
 	}
 	/**
 	 * Gets the state name.
 	 * @return the state name.
 	 */
 	public String getStateName() {
-		// TODO Auto-generated method stub
-		return null;
+		return currentState.getStateName();
 	}
 	/**
 	 * Set the type from string.
 	 * @param type in string format.
 	 */
 	private void setTypeFromString(String type) {
+		if("".equals(type) || type == null) {
+			throw new IllegalArgumentException("Invalid task information.");
+		}
+		if(type.equals(FEATURE_NAME)) {
+			this.type = Type.FEATURE;
+		}
+		else if(type.equals(TECHNICAL_WORK_NAME)) {
+			this.type = Type.TECHNICAL_WORK;
+		}
+		else if(type.equals(BUG_NAME)) {
+			this.type = Type.BUG;
+		}
+		else if(type.equals(KNOWLEDGE_ACQUISITION_NAME)) {
+			this.type = Type.KNOWLEDGE_ACQUISITION;
+		}
+		else {
+			throw new IllegalArgumentException("Invalid task information.");
+		}
 		
 	}
 	/**
@@ -287,42 +343,69 @@ public class Task {
 	 * @return Returns the type
 	 */
 	public Type getType() {
-		return null;
+		return type;
 	}
 	/**
 	 * Gets type short name.
 	 * @return Returns type short name.
 	 */
 	public String getTypeShortName() {
-		return null;
+		if(type.equals(Type.FEATURE)) {
+			return T_FEATURE;
+		} else if(type.equals(Type.BUG)) {
+			return T_BUG;		
+		} else if(type.equals(Type.KNOWLEDGE_ACQUISITION)) {
+			return T_KNOWLEDGE_ACQUISITION;
+		} else if(type.equals(Type.TECHNICAL_WORK)) {
+			return T_TECHNICAL_WORK;
+		} else {
+			throw new IllegalArgumentException("Invalid task information.");
+		}
+		
 	}
 	/**
 	 * Gets type long name.
 	 * @return Returns type long name.
 	 */
 	public String getTypeLongName() {
-		return null;
+		if(type.equals(Type.FEATURE)) {
+			return FEATURE_NAME;
+		} else if(type.equals(Type.BUG)) {
+			return BUG_NAME;
+		} else if(type.equals(Type.KNOWLEDGE_ACQUISITION)) {
+			return KNOWLEDGE_ACQUISITION_NAME;
+		} else if(type.equals(Type.TECHNICAL_WORK)) {
+			return TECHNICAL_WORK_NAME;
+		} else {
+			throw new IllegalArgumentException("Invalid task information.");
+		}
+		
 	}
 	/**
 	 * Gets the notes list.
 	 * @return Returns the notes list.
 	 */
 	public String getNotesList() {
-		return null;
+		String res = "";
+		for(String n : notes) {
+			res += "-" + n + "\n";
+		}
+		return res;
 	}
 	/**
 	 * Updates the task
 	 * @param c Represents the command.
 	 */
 	public void update(Command c) {
-		
+		currentState.updateState(c);
 	}
 	/**
 	 * Gets notes array.
 	 * @return 2d String array of notes.
 	 */
 	public String[] getNotesArray() {
-		return null;
+		String[] notesArray = notes.toArray(new String[0]);
+		return notesArray;
 	}
 	/**
 	 * toString method for Task class.
@@ -380,7 +463,14 @@ public class Task {
 		 */
 		@Override
 		public void updateState(Command c) {
-			// TODO Auto-generated method stub
+			if(c.getCommand().equals(CommandValue.CLAIM)) {
+				setState(OWNED_NAME);
+			} else if(c.getCommand().equals(CommandValue.REJECT)) {
+				setState(REJECTED_NAME);
+			} else {
+				throw new UnsupportedOperationException("Invalid transition.");
+			}
+			
 		}
 		/**
 		 * Returns the name of the current state as a String.
@@ -388,8 +478,7 @@ public class Task {
 		 */
 		@Override
 		public String getStateName() {
-			// TODO Auto-generated method stub
-			return null;
+			return BACKLOG_NAME;
 		}
 		
 	}
@@ -414,7 +503,15 @@ public class Task {
 		 */
 		@Override
 		public void updateState(Command c) {
-			// TODO Auto-generated method stub
+			if(c.getCommand().equals(CommandValue.PROCESS)) {
+				setState(PROCESSING_NAME);
+			} else if(c.getCommand().equals(CommandValue.REJECT)) {
+				setState(REJECTED_NAME);
+			} else if(c.getCommand().equals(CommandValue.BACKLOG)) {
+				setState(BACKLOG_NAME);
+			} else {
+				throw new UnsupportedOperationException("Invalid transition.");
+			}
 			
 		}
 		/**
@@ -423,8 +520,7 @@ public class Task {
 		 */
 		@Override
 		public String getStateName() {
-			// TODO Auto-generated method stub
-			return null;
+			return OWNED_NAME;
 		}
 		
 	}
@@ -449,8 +545,22 @@ public class Task {
 		 */
 		@Override
 		public void updateState(Command c) {
-			// TODO Auto-generated method stub
-			
+			if(c.getCommand().equals(CommandValue.PROCESS)) {
+				setState(PROCESSING_NAME);
+			}
+			else if(c.getCommand().equals(CommandValue.VERIFY)) {
+				if(type.equals(Type.FEATURE) || type.equals(Type.TECHNICAL_WORK) || type.equals(Type.BUG)) {
+					setState(VERIFYING_NAME);
+				}
+				else {
+					throw new UnsupportedOperationException("Invalid transition.");
+				}
+			} else if(c.getCommand().equals(CommandValue.COMPLETE) && type.equals(Type.KNOWLEDGE_ACQUISITION)) {
+				setState(DONE_NAME);
+			}
+			else {
+				throw new UnsupportedOperationException("Invalid transition.");
+			}
 		}
 		/**
 		 * Returns the name of the current state as a String.
@@ -458,8 +568,7 @@ public class Task {
 		 */
 		@Override
 		public String getStateName() {
-			// TODO Auto-generated method stub
-			return null;
+			return PROCESSING_NAME;
 		}
 		
 	}
@@ -484,7 +593,15 @@ public class Task {
 		 */
 		@Override
 		public void updateState(Command c) {
-			// TODO Auto-generated method stub
+			if(c.getCommand().equals(CommandValue.COMPLETE)) {
+				setState(DONE_NAME);
+			}
+			else if(c.getCommand().equals(CommandValue.PROCESS)) {
+				setState(PROCESSING_NAME);
+			}
+			else {
+				throw new UnsupportedOperationException("Invalid transition.");
+			}
 			
 		}
 		/**
@@ -493,8 +610,7 @@ public class Task {
 		 */
 		@Override
 		public String getStateName() {
-			// TODO Auto-generated method stub
-			return null;
+			return VERIFYING_NAME;
 		}
 		
 	}
@@ -519,7 +635,15 @@ public class Task {
 		 */
 		@Override
 		public void updateState(Command c) {
-			// TODO Auto-generated method stub
+			if(c.getCommand().equals(CommandValue.PROCESS)) {
+				setState(PROCESSING_NAME);
+			}
+			else if(c.getCommand().equals(CommandValue.BACKLOG)) {
+				setState(BACKLOG_NAME);
+			}
+			else {
+				throw new UnsupportedOperationException("Invalid transition.");
+			}
 			
 		}
 		/**
@@ -528,8 +652,7 @@ public class Task {
 		 */
 		@Override
 		public String getStateName() {
-			// TODO Auto-generated method stub
-			return null;
+			return DONE_NAME;
 		}
 		
 	}
@@ -554,8 +677,12 @@ public class Task {
 		 */
 		@Override
 		public void updateState(Command c) {
-			// TODO Auto-generated method stub
-			
+			if(c.getCommand().equals(CommandValue.BACKLOG)) {
+				setState(BACKLOG_NAME);
+			}
+			else {
+				throw new UnsupportedOperationException("Invalid transition.");
+			}
 		}
 		/**
 		 * Returns the name of the current state as a String.
@@ -563,10 +690,8 @@ public class Task {
 		 */
 		@Override
 		public String getStateName() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
+			return REJECTED_NAME;
+		}		
 	}
 		
 }
