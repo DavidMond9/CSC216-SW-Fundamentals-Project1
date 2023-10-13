@@ -3,7 +3,10 @@
  */
 package edu.ncsu.csc216.product_backlog.model.io;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import edu.ncsu.csc216.product_backlog.model.product.Product;
 import edu.ncsu.csc216.product_backlog.model.task.Task;
@@ -23,12 +26,49 @@ public class ProductsReader {
 	 * @param fileName Name of the file.
 	 * @return An ArrayList of products.
 	 */
-	public static ArrayList<Product> readProductsFile(String fileName){
-		int a = 0;
-		if(a == 5) {
-			throw new IllegalArgumentException("Unable to load file.");
+	public static ArrayList<Product> readProductsFile(String fileName) throws FileNotFoundException {
+		Scanner fileReader = new Scanner(new FileInputStream(fileName));
+		ArrayList<Product> products = new ArrayList<Product>();
+		Task task = null;
+		String pFile = "";
+		Product product = null;
+		
+		
+		while(fileReader.hasNextLine()) {
+			pFile += fileReader.nextLine() + "\n";
 		}
-		return null;
+		fileReader.close();
+		
+		Scanner scanP = new Scanner(pFile);
+		
+		scanP.useDelimiter("\\r?\\n?[#]");
+		String liner = "";
+		while (scanP.hasNext()) {
+			liner = scanP.nextLine();
+			if(liner.charAt(0) == '#') {	
+				String productLine = liner.substring(2);
+				product = processProduct(productLine);				
+				if (product != null) {
+					products.add(product);
+				}
+			}
+			if(liner.charAt(0) == '*') {				
+				String newLine = liner.substring(2);
+				newLine = newLine.trim();
+				task = processTask(newLine);
+				if (task != null) { 
+					product.addTask(task);
+				}
+			}
+			if(liner.charAt(0) == '-') {
+				String noteLine = liner.substring(2);
+				noteLine = noteLine.trim();
+				task.addNoteToList(noteLine);
+			}
+		}
+		scanP.close();
+		return products;
+
 	}
 	/**
 	 * Processes a product
@@ -36,7 +76,18 @@ public class ProductsReader {
 	 * @return The product being processed.
 	 */
 	private static Product processProduct(String productName) {
-		return null;
+		Scanner a = new Scanner(productName);
+		Product product = null;
+		try {
+			String own = a.nextLine();
+			own.trim();
+			product = new Product(own);
+			a.close();
+			return product;
+		} catch (Exception e) {
+			a.close();
+			return product;
+		}
 	}
 	/**
 	 * Processes a task.
@@ -44,6 +95,27 @@ public class ProductsReader {
 	 * @return The task being processed.
 	 */
 	private static Task processTask(String taskName) {
-		return null;
+		Scanner a = new Scanner(taskName);
+		a.useDelimiter(",");
+		ArrayList<String> note = new ArrayList<String>();
+		Task task = null;
+		try {
+			int id = a.nextInt();
+			String state = a.next();
+			String title = a.next();
+			String type = a.next();
+			String creator = a.next();
+			String owner = a.next();
+			String verified = a.next();
+			task = new Task(id, state, title, type, creator, owner, verified, note);
+			a.close();
+			return task;
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage());
+			throw new IllegalArgumentException();
+		}
+
+		
 	}
 }

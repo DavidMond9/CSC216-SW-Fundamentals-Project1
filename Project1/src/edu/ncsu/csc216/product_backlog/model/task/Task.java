@@ -121,7 +121,7 @@ public class Task {
 	 */
 	public Task(int taskId, String title, Type type, String creator, String note) {
 		
-		this(taskId, "", title, "", creator, "", UNOWNED, new ArrayList<String>());
+		this(taskId, BACKLOG_NAME, title, "none", creator, UNOWNED, "false", new ArrayList<String>());
 		setType(type);
 		addNoteToList(note);
 		
@@ -263,7 +263,7 @@ public class Task {
 	 */
 	private void setType(Type type) {
 		if(type == null) {
-			throw new IllegalArgumentException("INvalid task information.");
+			throw new IllegalArgumentException("Invalid task information.");
 		}
 		this.type = type;
 	}
@@ -276,7 +276,7 @@ public class Task {
 		if(note == null || "".equals(note)) {
 			throw new IllegalArgumentException("Invalid task information.");
 		}
-		//work to be done
+		notes.add(note);
 		return 0;
 	}
 	/**
@@ -287,19 +287,19 @@ public class Task {
 		if(state.equals(BACKLOG_NAME)) {
 			currentState = new BacklogState();
 		}
-		if(state.equals(VERIFYING_NAME)) {
+		else if(state.equalsIgnoreCase(VERIFYING_NAME)) {
 			currentState = new VerifyingState();
 		}
-		if(state.equals(OWNED_NAME)) {
+		else if(state.equalsIgnoreCase(OWNED_NAME)) {
 			currentState = new OwnedState();
 		}
-		if(state.equals(PROCESSING_NAME)) {
+		else if(state.equalsIgnoreCase(PROCESSING_NAME)) {
 			currentState = new ProcessingState();
 		}
-		if(state.equals(DONE_NAME)) {
+		else if(state.equalsIgnoreCase(DONE_NAME)) {
 			currentState = new DoneState();
 		}
-		if(state.equals(REJECTED_NAME)) {
+		else if(state.equalsIgnoreCase(REJECTED_NAME)) {
 			currentState = new RejectedState();
 		}
 		else {
@@ -321,16 +321,16 @@ public class Task {
 		if("".equals(type) || type == null) {
 			throw new IllegalArgumentException("Invalid task information.");
 		}
-		if(type.equals(FEATURE_NAME)) {
+		if(type.equals(T_FEATURE) || type.equals(FEATURE_NAME)) {
 			this.type = Type.FEATURE;
 		}
-		else if(type.equals(TECHNICAL_WORK_NAME)) {
+		else if(type.equals(T_TECHNICAL_WORK) || type.equals ( TECHNICAL_WORK_NAME)) {
 			this.type = Type.TECHNICAL_WORK;
 		}
-		else if(type.equals(BUG_NAME)) {
+		else if(type.equals(T_BUG) || type.equals(BUG_NAME)) {
 			this.type = Type.BUG;
 		}
-		else if(type.equals(KNOWLEDGE_ACQUISITION_NAME)) {
+		else if(type.equals(T_KNOWLEDGE_ACQUISITION) || type.equals(KNOWLEDGE_ACQUISITION_NAME)) {
 			this.type = Type.KNOWLEDGE_ACQUISITION;
 		}
 		else {
@@ -388,7 +388,7 @@ public class Task {
 	public String getNotesList() {
 		String res = "";
 		for(String n : notes) {
-			res += "-" + n + "\n";
+			res += "- [" + getStateName() + "] " + n + "\n";
 		}
 		return res;
 	}
@@ -413,8 +413,7 @@ public class Task {
 	 */
 	@Override
 	public String toString() {
-		return "Task [taskId=" + taskId + ", title=" + title + ", creator=" + creator + ", owner=" + owner
-				+ ", isVerified=" + isVerified + ", notes=" + notes + "]";
+		return "* " + taskId + "," + getStateName() + "," + getTypeShortName() + "," + creator + "," + owner + "," + isVerified + "\n" + getNotesList();
 	}
 	/**
 	 * Interface for states in the Task State Pattern.  All 

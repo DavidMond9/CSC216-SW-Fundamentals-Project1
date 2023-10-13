@@ -76,7 +76,7 @@ public class Product {
 	 * @param task to add.
 	 */
 	public void addTask(Task task) {
-		int idx = 0;
+		int idx = list.size();
 		for(int i = 0; i < list.size(); i++) {
 			if(task.getTaskId() == list.get(i).getTaskId()) {
 				throw new IllegalArgumentException("Task cannot be added.");
@@ -111,7 +111,7 @@ public class Product {
 	 * Get list of tasks.
 	 * @return Returns the list of tasks.
 	 */
-	public List<Task> getTasks(){
+	public ArrayList<Task> getTasks(){
 		return list;
 	}
 	/**

@@ -38,16 +38,7 @@ public class Command {
 		if(c == null || noteText == null || "".equals(noteText)){
 			throw new IllegalArgumentException(COMMAND_ERROR_MESSAGE);
 		}
-		if(c.equals(CommandValue.CLAIM)) {
-			if(owner == null || "".equals(owner)) {
-				throw new IllegalArgumentException(COMMAND_ERROR_MESSAGE);
-			}
-		}
-		else {
-			if(owner != null) {
-				throw new IllegalArgumentException(COMMAND_ERROR_MESSAGE);
-			}
-		}
+		
 		
 		this.owner = owner;
 		note = noteText;
