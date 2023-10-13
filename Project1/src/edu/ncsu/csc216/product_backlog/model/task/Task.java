@@ -121,7 +121,7 @@ public class Task {
 	 */
 	public Task(int taskId, String title, Type type, String creator, String note) {
 		
-		this(taskId, BACKLOG_NAME, title, "none", creator, UNOWNED, "false", new ArrayList<String>());
+		this(taskId, BACKLOG_NAME, title, "all", creator, UNOWNED, "false", new ArrayList<String>());
 		setType(type);
 		addNoteToList(note);
 		
@@ -140,8 +140,8 @@ public class Task {
 	public Task(int taskId, String state, String title, String type, String creator, String owner, String verified, ArrayList<String> notes) {
 		setTaskId(taskId);
 		setState(state);
-		setTitle(title);
 		setTypeFromString(type);
+		setTitle(title);
 		setCreator(creator);
 		setOwner(owner);
 		setVerified(verified);
