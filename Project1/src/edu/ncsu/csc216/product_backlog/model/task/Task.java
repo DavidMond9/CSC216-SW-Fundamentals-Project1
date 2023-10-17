@@ -121,10 +121,10 @@ public class Task {
 	 */
 	public Task(int taskId, String title, Type type, String creator, String note) {
 		
-		this(taskId, BACKLOG_NAME, title, "all", creator, UNOWNED, "false", new ArrayList<String>());
+		this(taskId, BACKLOG_NAME, title, T_FEATURE, creator, UNOWNED, "false", new ArrayList<String>());
 		setType(type);
 		addNoteToList(note);
-		
+	
 	}
 	/**
 	 * Task constructor with 8 parameters.
@@ -334,6 +334,7 @@ public class Task {
 			this.type = Type.KNOWLEDGE_ACQUISITION;
 		}
 		else {
+			System.out.println(type);
 			throw new IllegalArgumentException("Invalid task information.");
 		}
 		
