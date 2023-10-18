@@ -45,10 +45,10 @@ class ProductTest {
 	 */
 	private Task testTask3 = new Task(1, "Owned", "title1", "B", "creator1", "unowned", "false", testNotes1);
 
-	@Test
+	/*@Test
 	void testSetTaskCounter() {
 		//testProduct1.setTaskCounter();
-	}
+	}*/
 	@Test
 	void testAddTask() {
 		testProduct1.addTask(testTask1);
