@@ -42,11 +42,7 @@ public class BacklogManager {
 	 * @param fileName name of file.
 	 */
 	public void saveToFile(String fileName) {
-		try {
-			ProductsWriter.writeProductsToFile(fileName, products);
-		} catch (FileNotFoundException e) {
-			System.out.println("File not found.");
-		}
+		ProductsWriter.writeProductsToFile(fileName, products);
 	}
 	/**
 	 * Loads from file.
