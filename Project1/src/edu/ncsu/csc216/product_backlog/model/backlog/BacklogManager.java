@@ -53,11 +53,7 @@ public class BacklogManager {
 	 * @param fileName name of file.
 	 */
 	public void loadFromFile(String fileName) {
-		try {
-			products = ProductsReader.readProductsFile(fileName);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+		products = ProductsReader.readProductsFile(fileName);
 		currProduct = products.get(0);
 	}
 	/**

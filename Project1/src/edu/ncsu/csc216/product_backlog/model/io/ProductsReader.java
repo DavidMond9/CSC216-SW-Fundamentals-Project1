@@ -26,48 +26,56 @@ public class ProductsReader {
 	 * @param fileName Name of the file.
 	 * @return An ArrayList of products.
 	 */
-	public static ArrayList<Product> readProductsFile(String fileName) throws FileNotFoundException {
-		Scanner fileReader = new Scanner(new FileInputStream(fileName));
+	public static ArrayList<Product> readProductsFile(String fileName)  {
+		Scanner fileReader;
 		ArrayList<Product> products = new ArrayList<Product>();
 		Task task = null;
 		String pFile = "";
 		Product product = null;
-		
-		
-		while(fileReader.hasNextLine()) {
-			pFile += fileReader.nextLine() + "\n";
-		}
-		fileReader.close();
-		
-		Scanner scanP = new Scanner(pFile);
-		
-		scanP.useDelimiter("\\r?\\n?[#]");
-		String liner = "";
-		while (scanP.hasNext()) {
-			liner = scanP.nextLine();
-			if(liner.charAt(0) == '#') {	
-				String productLine = liner.substring(2);
-				product = processProduct(productLine);				
-				if (product != null) {
-					products.add(product);
+		try {
+			fileReader = new Scanner(new FileInputStream(fileName));
+			while(fileReader.hasNextLine()) {
+				pFile += fileReader.nextLine() + "\n";
+			}
+			fileReader.close();
+			
+			Scanner scanP = new Scanner(pFile);
+			
+			scanP.useDelimiter("\\r?\\n?[#]");
+			String liner = "";
+			while (scanP.hasNext()) {
+				liner = scanP.nextLine();
+				if(liner.charAt(0) == '#') {	
+					String productLine = liner.substring(2);
+					product = processProduct(productLine);				
+					if (product != null) {
+						products.add(product);
+					}
+				}
+				if(liner.charAt(0) == '*') {				
+					String newLine = liner.substring(2);
+					newLine = newLine.trim();
+					task = processTask(newLine);
+					if (task != null) { 
+						product.addTask(task);
+					}
+				}
+				if(liner.charAt(0) == '-') {
+					String noteLine = liner.substring(2);
+					noteLine = noteLine.trim();
+					task.addNoteToList(noteLine);
 				}
 			}
-			if(liner.charAt(0) == '*') {				
-				String newLine = liner.substring(2);
-				newLine = newLine.trim();
-				task = processTask(newLine);
-				if (task != null) { 
-					product.addTask(task);
-				}
-			}
-			if(liner.charAt(0) == '-') {
-				String noteLine = liner.substring(2);
-				noteLine = noteLine.trim();
-				task.addNoteToList(noteLine);
-			}
+			scanP.close();
+			return products;
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		scanP.close();
 		return products;
+		
+		
+		
 
 	}
 	/**
