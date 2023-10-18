@@ -26,9 +26,9 @@ public class ProductsWriter {
 	 * @param productList List of products being written.
 	 * @throws FileNotFoundException throws exception if file not found.
 	 */
-	public static void writeProductsToFile(String fileName, List<Product> productList) throws FileNotFoundException {
-		PrintStream fileWriter = new PrintStream(new File(fileName));
+	public static void writeProductsToFile(String fileName, List<Product> productList) {
 		try {
+			PrintStream fileWriter = new PrintStream(new File(fileName));
 			for (int i = 0; i < productList.size(); i++) {
 				Product product = productList.get(i);
 			    fileWriter.println("# " + product.getProductName());
