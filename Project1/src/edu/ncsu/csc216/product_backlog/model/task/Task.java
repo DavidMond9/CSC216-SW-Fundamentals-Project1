@@ -279,7 +279,7 @@ public class Task {
 			throw new IllegalArgumentException("Invalid task information.");
 		}
 		notes.add(note);
-		return 0;
+		return notes.indexOf(note);
 	}
 	/**
 	 * Sets the state.
@@ -604,6 +604,7 @@ public class Task {
 		public void updateState(Command c) {
 			if(c.getCommand().equals(CommandValue.COMPLETE)) {
 				setState(DONE_NAME);
+				isVerified = true;
 			}
 			else if(c.getCommand().equals(CommandValue.PROCESS)) {
 				setState(PROCESSING_NAME);
