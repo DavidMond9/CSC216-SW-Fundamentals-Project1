@@ -32,7 +32,7 @@ public class Product {
 	public Product(String name) {
 		setProductName(name);
 		list = new ArrayList<Task>();
-		counter = 1;
+		setTaskCounter();
 	}
 
 	/**
@@ -75,6 +75,7 @@ public class Product {
 	 * @param task to add.
 	 */
 	public void addTask(Task task) {
+		setTaskCounter();
 		int idx = list.size();
 		for(int i = 0; i < list.size(); i++) {
 			if(task.getTaskId() == list.get(i).getTaskId()) {
@@ -92,7 +93,7 @@ public class Product {
 		list.add(idx, task);
 		
 		//update counter
-		setTaskCounter();
+		counter += 1;
 	}
 	/**
 	 * Add a task with title type creator and note.
@@ -103,7 +104,7 @@ public class Product {
 	 */
 	public void addTask(String title, Type type, String creator, String note) {
 		Task task = new Task(counter, title, type, creator, note);
-		list.add(task);
+		addTask(task);
 		//update counter
 		setTaskCounter();
 	}
@@ -146,7 +147,7 @@ public class Product {
 	public void deleteTaskById(int id) {
 		for(int i = 0; i < list.size(); i++) {
 			if(list.get(i).getTaskId() == id) {
-				list.remove(list.get(i));
+				list.remove(i);
 			}
 		}
 	}

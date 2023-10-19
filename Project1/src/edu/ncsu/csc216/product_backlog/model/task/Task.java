@@ -121,7 +121,7 @@ public class Task {
 	 */
 	public Task(int taskId, String title, Type type, String creator, String note) {
 		
-		this(taskId, BACKLOG_NAME, title, T_FEATURE, creator, UNOWNED, "false", new ArrayList<String>());
+		this(taskId, BACKLOG_NAME, title, "null", creator, UNOWNED, "false", new ArrayList<String>());
 		setType(type);		
 		addNoteToList(note);
 	
@@ -229,11 +229,11 @@ public class Task {
 	 * @param isVerified the isVerified to set
 	 */
 	private void setVerified(String isVerified) {
-		if("true".equals(isVerified)) {
+		if("true".equalsIgnoreCase(isVerified)) {
 			this.isVerified = true;
 
 		}
-		else if("false".equals(isVerified)) {
+		else if("false".equalsIgnoreCase(isVerified)) {
 			this.isVerified = false;
 
 		}
@@ -336,9 +336,10 @@ public class Task {
 		}
 		else if(type.equals(T_KNOWLEDGE_ACQUISITION) || type.equals(KNOWLEDGE_ACQUISITION_NAME)) {
 			this.type = Type.KNOWLEDGE_ACQUISITION;
+		} else if("null".equals(type)) {
+			this.type = null;
 		}
 		else {
-			System.out.println(type);
 			throw new IllegalArgumentException("Invalid task information.");
 		}
 	}
@@ -429,7 +430,7 @@ public class Task {
 	 */
 	@Override
 	public String toString() {
-		return "* " + taskId + "," + getStateName() + "," + getTitle() + "," + getTypeShortName() + "," + creator + "," + owner + "," + isVerified + "\n" + getNotesList();
+		return "* " + taskId + "," + getStateName() + "," + title + "," + getTypeShortName() + "," + creator + "," + owner + "," + isVerified + "\n" + getNotesList();
 	}
 	/**
 	 * Interface for states in the Task State Pattern.  All 
