@@ -159,7 +159,13 @@ public class BacklogManager {
 	 * @return returns the product list.
 	 */
 	public String[] getProductList(){
-		return products.toArray(new String[products.size()]);
+		String[] list = new String[products.size()];
+		
+		for(int i = 0; i < list.length; i++) {
+			list[i] = products.get(i).getProductName();
+		}
+		
+		return list;
 	}
 	/**
 	 * Clear the products.

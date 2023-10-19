@@ -278,7 +278,7 @@ public class Task {
 		if(note == null || "".equals(note)) {
 			throw new IllegalArgumentException("Invalid task information.");
 		}
-		notes.add("[" + getStateName() + "] " + note);
+		notes.add(note);
 		return 0;
 	}
 	/**
@@ -410,7 +410,11 @@ public class Task {
 	 * @return 2d String array of notes.
 	 */
 	public String[] getNotesArray() {
-		String[] notesArray = notes.toArray(new String[0]);
+		String[] notesArray = new String[notes.size()];
+		
+		for(int i = 0; i < notesArray.length; i++) {
+			notesArray[i] = notes.get(i);
+		}
 		return notesArray;
 	}
 	/**
