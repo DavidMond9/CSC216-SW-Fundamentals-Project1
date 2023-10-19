@@ -56,7 +56,7 @@ public class Product {
 	/**
 	 * Sets the task counter.
 	 */
-	/*private void setTaskCounter() {
+	private void setTaskCounter() {
 		int maxId = 0;
 		if(list.size() == 0) {
 			counter = 1;
@@ -69,7 +69,7 @@ public class Product {
 			}
 		}
 		counter = maxId + 1;
-	}*/
+	}
 	/**
 	 * Add a task.
 	 * @param task to add.
@@ -105,7 +105,7 @@ public class Product {
 		Task task = new Task(counter, title, type, creator, note);
 		list.add(task);
 		//update counter
-		counter += 1;
+		setTaskCounter();
 	}
 	/**
 	 * Get list of tasks.

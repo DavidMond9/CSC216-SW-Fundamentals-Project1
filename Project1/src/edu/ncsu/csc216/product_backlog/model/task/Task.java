@@ -392,7 +392,7 @@ public class Task {
 	public String getNotesList() {
 		String res = "";
 		for(String n : notes) {
-			res += "-  " + n;
+			res += "-  " +  n;
 		}
 		return res;
 	}
