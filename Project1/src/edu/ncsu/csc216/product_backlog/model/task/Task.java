@@ -277,7 +277,7 @@ public class Task {
 		if(note == null || "".equals(note)) {
 			throw new IllegalArgumentException("Invalid task information.");
 		}
-		notes.add(getStateName() + " " + note);
+		notes.add("[" + getStateName() + "] " + note);
 		return 0;
 	}
 	/**
