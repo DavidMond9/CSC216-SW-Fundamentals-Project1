@@ -16,6 +16,7 @@ class BacklogManagerTest {
 	private final String testOutput2 = "newFile.txt";
 	
 	BacklogManager testBacklog = BacklogManager.getInstance();
+	BacklogManager testTest = BacklogManager.getInstance();
 	
 	@Test
 	void testSaveToFileAndLoadToFile() throws FileNotFoundException {
@@ -102,6 +103,12 @@ class BacklogManagerTest {
 	@Test
 	void testDeleteProduct() {
 		assertEquals("a", "a");
+	}
+	@Test
+	void testTest() {
+		testTest.loadFromFile(task1);
+		System.out.println(testTest.getTasksAsArray());
+		
 	}
 
 }
