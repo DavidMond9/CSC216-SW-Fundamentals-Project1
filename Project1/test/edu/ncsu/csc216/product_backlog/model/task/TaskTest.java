@@ -98,16 +98,59 @@ class TaskTest {
 		Task task1 = new Task(5, "Backlog", "test", "B", "david", "owned", "false", new ArrayList<String>());
 		Task task2 = new Task(5, "Owned", "test", "B", "david", "owned", "false", new ArrayList<String>());
 		Task task3 = new Task(5, "Verifying", "test", "B", "david", "owned", "false", new ArrayList<String>());
+		Task task4 = new Task(5, "Rejected", "test", "B", "david", "owned", "false", new ArrayList<String>());
+		Task task5 = new Task(5, "Processing", "test", "B", "david", "owned", "false", new ArrayList<String>());
+		Task task6 = new Task(5, "Done", "test", "B", "david", "owned", "false", new ArrayList<String>());
+		Task task7 = new Task(5, "Processing", "test", "KA", "david", "owned", "false", new ArrayList<String>());
 
+		
 		Command c = new Command(CommandValue.CLAIM, "a", "a");
 		Command c2 = new Command(CommandValue.COMPLETE, null, "c");
 		Command c3 = new Command(CommandValue.PROCESS, null, "d");
+		Command c4 = new Command(CommandValue.BACKLOG, null, "a");
+		Command c5 = new Command(CommandValue.REJECT, null, "a");
+		Command c6 = new Command(CommandValue.VERIFY, null, "a");
+		
 		task1.update(c);
 		assertEquals("Owned", task1.getStateName());
+		task1.update(c5);
+		assertEquals("Rejected", task1.getStateName());
+		task1.update(c4);
+		assertEquals("Backlog", task1.getStateName());
+		
+
+		
+		
 		task2.update(c3);
 		assertEquals("Processing", task2.getStateName());
+		task2.update(c6);
+		assertEquals("Verifying", task2.getStateName());
+		task2.update(c3);
+		assertEquals("Processing", task2.getStateName());
+		
+
+		
 		task3.update(c2);
 		assertEquals("Done", task3.getStateName());
+		task3.update(c4);
+		assertEquals("Backlog", task3.getStateName());
+
+		
+		task4.update(c4);
+		assertEquals("Backlog", task4.getStateName());
+		
+		task5.update(c3);
+		assertEquals("Processing", task5.getStateName());
+		
+		
+		task6.update(c3);
+		assertEquals("Processing", task5.getStateName());
+
+
+		task7.update(c2);
+		assertEquals("Done", task7.getStateName());
+
+
 	}
 	
 }
