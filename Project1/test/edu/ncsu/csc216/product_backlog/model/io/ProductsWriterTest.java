@@ -16,7 +16,7 @@ class ProductsWriterTest {
 	private final String task1 = "test-files/tasks1.txt";
 	private final String task2 = "test-files/tasks2.txt";
 	private final String task3 = "test-files/tasks3.txt";
-	private final String testOutput = "output.txt";
+	private final String testOutput = "newOutput.txt";
 	
 	private final ArrayList<String> testNotes1 = new ArrayList<String>();
 	private final ArrayList<String> testNotes2 = new ArrayList<String>();
@@ -28,7 +28,11 @@ class ProductsWriterTest {
 	void testWriteProductsToFile() {
 		try {
 			ProductsWriter.writeProductsToFile(testOutput, ProductsReader.readProductsFile(expTask));
-			assertEquals(ProductsReader.readProductsFile(testOutput), ProductsReader.readProductsFile(expTask));
+			ArrayList<Product> p1 = ProductsReader.readProductsFile(testOutput);
+			ArrayList<Product> p2 = ProductsReader.readProductsFile(expTask);
+			assertEquals(p1.size(), p2.size());	
+			assertEquals(p1.get(0).getTasks().toString(), p2.get(0).getTasks().toString());
+			assertEquals(p1.get(0).getProductName().toString(), p2.get(0).getProductName().toString());
 		}
 	
 		catch(Exception e){

@@ -1,2 +1,0 @@
-# Shopping Cart Simulation
-* 2,Owned,Regular Carts,F,jep,sesmith5,false

@@ -1,7 +1,6 @@
 package edu.ncsu.csc216.product_backlog.model.product;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import edu.ncsu.csc216.product_backlog.model.command.Command;
 import edu.ncsu.csc216.product_backlog.model.task.Task;
@@ -104,6 +103,7 @@ public class Product {
 	 */
 	public void addTask(String title, Type type, String creator, String note) {
 		Task task = new Task(counter, title, type, creator, note);
+		list.add(task);
 		//update counter
 		counter += 1;
 	}

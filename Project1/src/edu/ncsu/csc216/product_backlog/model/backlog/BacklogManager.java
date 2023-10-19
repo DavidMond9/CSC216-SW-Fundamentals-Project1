@@ -3,7 +3,6 @@
  */
 package edu.ncsu.csc216.product_backlog.model.backlog;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import edu.ncsu.csc216.product_backlog.model.command.Command;
@@ -18,8 +17,17 @@ import edu.ncsu.csc216.product_backlog.model.task.Task.Type;
  * a BacklogManager.
  */
 public class BacklogManager {
+	/**
+	 * Represents the instance of BacklogManager.
+	 */
 	private static BacklogManager instance;
+	/**
+	 * Represents the current product.
+	 */
 	private Product currProduct;
+	/**
+	 * Represents the list of products in backlog manager.
+	 */
 	private ArrayList<Product> products;
 	/**
 	 * Constructor for BacklogManager.
@@ -128,13 +136,13 @@ public class BacklogManager {
 	}
 	/**
 	 * Add task to the product.
-	 * @param s First string parameter.
-	 * @param type Type of product.
-	 * @param a Third string parameter.
-	 * @param b Fourth string parameter.
+	 * @param title title of task
+	 * @param type type of task
+	 * @param taskName name of task
+	 * @param note note name
 	 */
-	public void addTaskToProduct(String title, Type type, String prodName, String note) {
-		currProduct.addTask(title, type, prodName, note);
+	public void addTaskToProduct(String title, Type type, String taskName, String note) {
+		currProduct.addTask(title, type, taskName, note);
 	}
 	/**
 	 * Get product name.

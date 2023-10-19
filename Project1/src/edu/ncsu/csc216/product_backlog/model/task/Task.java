@@ -389,7 +389,7 @@ public class Task {
 	public String getNotesList() {
 		String res = "";
 		for(String n : notes) {
-			res += "- [" + getStateName() + "] " + n + "\n";
+			res += "-  " + n;
 		}
 		return res;
 	}
@@ -414,7 +414,7 @@ public class Task {
 	 */
 	@Override
 	public String toString() {
-		return "* " + taskId + "," + getStateName() + "," + getTypeShortName() + "," + creator + "," + owner + "," + isVerified + "\n" + getNotesList();
+		return "* " + taskId + "," + getStateName() + "," + getTitle() + "," + getTypeShortName() + "," + creator + "," + owner + "," + isVerified + "\n" + getNotesList();
 	}
 	/**
 	 * Interface for states in the Task State Pattern.  All 

@@ -55,6 +55,7 @@ public class ProductsReader {
 				if(liner.charAt(0) == '*') {				
 					String newLine = liner.substring(2);
 					newLine = newLine.trim();
+					System.out.println(newLine);
 					task = processTask(newLine);
 					if (task != null) { 
 						product.addTask(task);

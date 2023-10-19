@@ -33,8 +33,7 @@ public class ProductsWriter {
 				Product product = productList.get(i);
 			    fileWriter.println("# " + product.getProductName());
 			    for(int j = 0; j < product.getTasks().size(); j++) {
-			    	fileWriter.println("* " + product.getTasks().get(j).toString());
-			    	fileWriter.println(product.getTasks().get(i).getNotesList());
+			    	fileWriter.println(product.getTasks().get(j).toString());
 			    }
 			}
 			fileWriter.close();
