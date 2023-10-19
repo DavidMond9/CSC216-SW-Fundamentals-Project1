@@ -124,15 +124,15 @@ public class BacklogManager {
 	 * @param c represents the command.
 	 */
 	public void executeCommand(int id, Command c) {
-		currProduct.executeCommand(id, c);
+		Task t1 = currProduct.getTaskById(id);
+		t1.update(c);
 	}
 	/**
 	 * Deletes the task by ID.
 	 * @param id to be checked for deleting the task.
 	 */
 	public void deleteTaskById(int id) {
-		Task t = getTaskById(id);
-		currProduct.getTasks().remove(t);
+		currProduct.deleteTaskById(id);
 	}
 	/**
 	 * Add task to the product.
