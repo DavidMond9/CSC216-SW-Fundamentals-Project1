@@ -18,7 +18,7 @@ public class ProductsWriter {
 	 * Constructor for ProductsWriter, actually creates the ProductsWriter.
 	 */
 	public ProductsWriter() {
-		
+		//Products Writer constructor
 	}
 	/**
 	 * Writes the products to file.

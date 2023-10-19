@@ -259,9 +259,10 @@ public class Task {
 	}
 	/**
 	 * Set type.
-	 * @param type Returns type of type>
+	 * @param type Returns type of type
 	 */
 	private void setType(Type type) {
+		//sets the type
 		if(type == null) {
 			throw new IllegalArgumentException("Invalid task information.");
 		}
@@ -284,6 +285,7 @@ public class Task {
 	 * @param state to set.
 	 */
 	private void setState(String state) {
+		//sets the state
 		if(state.equals(BACKLOG_NAME)) {
 			currentState = new BacklogState();
 		}
@@ -318,6 +320,7 @@ public class Task {
 	 * @param type in string format.
 	 */
 	private void setTypeFromString(String type) {
+		//sets type from string
 		if("".equals(type) || type == null) {
 			throw new IllegalArgumentException("Invalid task information.");
 		}
@@ -337,8 +340,8 @@ public class Task {
 			System.out.println(type);
 			throw new IllegalArgumentException("Invalid task information.");
 		}
-		
 	}
+	
 	/**
 	 * Gets the type
 	 * @return Returns the type
@@ -398,6 +401,7 @@ public class Task {
 	 * @param c Represents the command.
 	 */
 	public void update(Command c) {
+		//updates state
 		currentState.updateState(c);
 	}
 	/**

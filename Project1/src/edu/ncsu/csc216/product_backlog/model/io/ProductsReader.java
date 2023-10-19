@@ -19,7 +19,7 @@ public class ProductsReader {
 	 * Constructor for ProductsReader that creates the ProductsReader.
 	 */
 	public ProductsReader() {
-		
+		//Products constructor
 	}
 	/**
 	 * Method that reads the products file and returns an ArrayList of the products.
@@ -89,7 +89,6 @@ public class ProductsReader {
 		Product product = null;
 		try {
 			String own = a.nextLine();
-			own.trim();
 			product = new Product(own);
 			a.close();
 			return product;

@@ -21,7 +21,7 @@ class TaskTest {
 		assertEquals(task1.getType(), Type.BUG);
 		assertEquals(task1.getCreator(), "david");
 		assertEquals(task1.getOwner(), "owned");
-		assertEquals(task1.isVerified(), false);
+		assertFalse(task1.isVerified());
 		assertEquals(task1.getNotes().size(), 0);
 	}
 	

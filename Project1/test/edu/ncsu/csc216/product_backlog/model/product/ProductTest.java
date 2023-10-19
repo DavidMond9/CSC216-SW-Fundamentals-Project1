@@ -21,14 +21,6 @@ class ProductTest {
 	 */
 	private ArrayList<String> testNotes1 = new ArrayList<String>();
 	/**
-	 * Test notes list 2.
-	 */
-	private ArrayList<String> testNotes2 = new ArrayList<String>();
-	/**
-	 * Test product list.
-	 */
-	private ArrayList<Product> testProductList = new ArrayList<Product>();
-	/**
 	 * Test command.
 	 */
 	private Command testCommand = new Command(CommandValue.CLAIM, "owner", "note");
@@ -36,14 +28,6 @@ class ProductTest {
 	 * Test task 1.
 	 */
 	private Task testTask1 = new Task(1, "Backlog", "title1", "B", "creator1", "unowned", "false", testNotes1);
-	/**
-	 * Test task 2.
-	 */
-	private Task testTask2 = new Task(5, "Owned", "title1", "B", "creator5", "unowned", "true", testNotes2);
-	/**
-	 * Test task 3.
-	 */
-	private Task testTask3 = new Task(1, "Owned", "title1", "B", "creator1", "unowned", "false", testNotes1);
 
 	/*@Test
 	void testSetTaskCounter() {
