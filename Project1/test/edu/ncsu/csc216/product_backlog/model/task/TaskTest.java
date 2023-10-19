@@ -59,7 +59,7 @@ class TaskTest {
 		Task task1 = new Task(5, "Owned", "test", "B", "david", "owned", "false", new ArrayList<String>());
 		task1.addNoteToList("x");
 		task1.addNoteToList("y");
-		assertEquals("-  x-  y", task1.getNotesList());
+		assertEquals("- [Owned] x" + "\n" + "- [Owned] y", task1.getNotesList());
 		assertEquals(2, task1.getNotes().size());
 	}
 	@Test

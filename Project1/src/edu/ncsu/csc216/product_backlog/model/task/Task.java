@@ -392,8 +392,14 @@ public class Task {
 	 */
 	public String getNotesList() {
 		String res = "";
-		for(String n : notes) {
-			res += "-  " +  n;
+		for(int i = 0; i < notes.size(); i++) {
+			if(notes.size() - 1 != i) {
+				res += "- [" + getStateName() + "] " + notes.get(i) + "\n";
+			}
+			else {
+				res += "- [" +  getStateName() + "] " + notes.get(i);
+
+			}
 		}
 		return res;
 	}
