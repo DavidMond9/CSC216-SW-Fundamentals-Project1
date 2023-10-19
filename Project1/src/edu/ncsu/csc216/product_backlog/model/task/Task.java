@@ -122,7 +122,7 @@ public class Task {
 	public Task(int taskId, String title, Type type, String creator, String note) {
 		
 		this(taskId, BACKLOG_NAME, title, T_FEATURE, creator, UNOWNED, "false", new ArrayList<String>());
-		setType(type);
+		setType(type);		
 		addNoteToList(note);
 	
 	}
@@ -214,6 +214,7 @@ public class Task {
 		if(owner == null || "".equals(owner)) {
 			throw new IllegalArgumentException("Invalid task information.");
 		}
+		
 		this.owner = owner;
 	}
 	/**

@@ -92,7 +92,7 @@ public class Product {
 		list.add(idx, task);
 		
 		//update counter
-		counter += 1;
+		setTaskCounter();
 	}
 	/**
 	 * Add a task with title type creator and note.
