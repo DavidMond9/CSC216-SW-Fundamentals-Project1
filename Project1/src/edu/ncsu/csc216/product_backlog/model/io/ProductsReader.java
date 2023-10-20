@@ -29,6 +29,7 @@ public class ProductsReader {
 	public static ArrayList<Product> readProductsFile(String fileName)  {
 		Scanner fileReader;
 		ArrayList<Product> products = new ArrayList<Product>();
+
 		Task task = null;
 		String pFile = "";
 		Product product = null;
@@ -67,13 +68,16 @@ public class ProductsReader {
 					task.addNoteToList(noteLine);
 				}
 			}
+
+
+
 			scanP.close();
 			return products;
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new IllegalArgumentException("Illegal Argument Exception File Not Found.");
 		}
-		return products;
+
 		
 		
 	
