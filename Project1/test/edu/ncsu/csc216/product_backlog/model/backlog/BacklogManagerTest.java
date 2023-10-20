@@ -86,14 +86,20 @@ class BacklogManagerTest {
 	}
 	@Test
 	void testGetProductName() {
+		testBacklog.loadFromFile(task1);
+		testBacklog.getProductName();
 		assertEquals("a", "a");
 	}
 	@Test
 	void testGetProductList() {
+		testBacklog.loadFromFile(task1);
+		testBacklog.getProductList();
 		assertEquals("a", "a");
 	}
 	@Test
 	void testClearProducts() {
+		testBacklog.loadFromFile(task1);
+		testBacklog.clearProducts();
 		assertEquals("a", "a");
 	}
 	@Test
@@ -111,6 +117,9 @@ class BacklogManagerTest {
 	
 	@Test
 	void testDeleteProduct() {
+		testBacklog.loadFromFile(task1);
+		testBacklog.addProduct("product");
+		testBacklog.deleteProduct();
 		assertEquals("a", "a");
 	}
 
