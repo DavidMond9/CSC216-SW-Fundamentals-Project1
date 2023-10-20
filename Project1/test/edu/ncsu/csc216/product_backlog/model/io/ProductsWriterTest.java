@@ -10,7 +10,13 @@ import edu.ncsu.csc216.product_backlog.model.product.Product;
 
 class ProductsWriterTest {
 
+	/**
+	 * Test output file expTask.
+	 */
 	private final String expTask = "test-files/exp_tasks.txt";
+	/**
+	 * Test output file.
+	 */
 	private final String testOutput = "newOutput.txt";
 		
 	@Test

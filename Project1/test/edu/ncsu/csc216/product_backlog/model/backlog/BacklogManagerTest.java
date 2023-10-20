@@ -12,11 +12,20 @@ import edu.ncsu.csc216.product_backlog.model.product.Product;
 import edu.ncsu.csc216.product_backlog.model.task.Task;
 
 class BacklogManagerTest {
+	/**
+	 * Test task file for Backlog Manager.
+	 */
 	private final String task1 = "test-files/tasks1.txt";
+	/**
+	 * Test output file for Backlog Manager.
+	 */
 	private final String testOutput2 = "newFile.txt";
 	
+	/**
+	 * Test backlog instance.
+	 */
 	BacklogManager testBacklog = BacklogManager.getInstance();
-	BacklogManager testTest = BacklogManager.getInstance();
+	
 	
 	@Test
 	void testSaveToFileAndLoadToFile() throws FileNotFoundException {
@@ -103,12 +112,6 @@ class BacklogManagerTest {
 	@Test
 	void testDeleteProduct() {
 		assertEquals("a", "a");
-	}
-	@Test
-	void testTest() {
-		testTest.loadFromFile(task1);
-		System.out.println(testTest.getTasksAsArray());
-		
 	}
 
 }

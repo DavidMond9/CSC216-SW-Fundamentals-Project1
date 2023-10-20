@@ -62,7 +62,7 @@ public class ProductsReader {
 				}
 				if(liner.charAt(0) == '-') {
 					int idx = liner.lastIndexOf(']');
-					String noteLine = liner.substring(idx+1);
+					String noteLine = liner.substring(idx + 1);
 					noteLine = noteLine.trim();
 					task.addNoteToList(noteLine);
 				}
