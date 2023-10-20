@@ -37,7 +37,7 @@ public class Command {
 	 * @param noteText Represents the note text.
 	 */
 	public Command(CommandValue c, String owner, String noteText) {
-		if(c == null || noteText == null || "".equals(noteText)){
+		if(c == null || noteText == null || noteText.length() == 0){
 			throw new IllegalArgumentException(COMMAND_ERROR_MESSAGE);
 		}
 		

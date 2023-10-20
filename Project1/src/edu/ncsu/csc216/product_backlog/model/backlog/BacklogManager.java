@@ -98,6 +98,9 @@ public class BacklogManager {
 	 * @return 2d task array.
 	 */
 	public String[][] getTasksAsArray(){
+		if(currProduct == null) {
+			throw new IllegalArgumentException("Illegal Argument Exception.");
+		}
 		ArrayList<Task> tasks = currProduct.getTasks();
 		String[][] res = new String[tasks.size()][4];
 		
@@ -116,6 +119,9 @@ public class BacklogManager {
 	 * @return the task that you get with the id.
 	 */
 	public Task getTaskById(int id) {
+		if(currProduct == null) {
+			throw new IllegalArgumentException("Illegal Argument Exception.");
+		}
 		return currProduct.getTaskById(id);
 	}
 	/**
@@ -124,6 +130,9 @@ public class BacklogManager {
 	 * @param c represents the command.
 	 */
 	public void executeCommand(int id, Command c) {
+		if(currProduct == null) {
+			throw new IllegalArgumentException("Illegal Argument Exception.");
+		}
 		Task t1 = currProduct.getTaskById(id);
 		t1.update(c);
 	}
