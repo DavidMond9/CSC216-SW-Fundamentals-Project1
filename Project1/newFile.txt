@@ -1,38 +1,38 @@
 # Shopping Cart Simulation
 * 1,Backlog,Express Carts,F,jep,unowned,false
-- [Backlog] [Backlog] Express carts always choose the shortest line. If there are multiple shortest lines, an express cart chooses the one with the smallest index.
+- [Backlog] klog] Express carts always choose the shortest line. If there are multiple shortest lines, an express cart chooses the one with the smallest index.
 * 2,Owned,Regular Carts,F,jep,sesmith5,false
-- [Owned] [Backlog] Regular carts always choose the shortest line excluding the express register line (at index 0). If there are multiple shortest lines, a regular cart chooses one with the smallest index.
-- [Owned] [Owned] Adding to sesmith5 backlog.
+- [Owned] klog] Regular carts always choose the shortest line excluding the express register line (at index 0). If there are multiple shortest lines, a regular cart chooses one with the smallest index.
+- [Owned] ed] Adding to sesmith5 backlog.
 * 3,Processing,Java Swing,KA,sesmith5,sesmith5,false
-- [Processing] [Backlog] Learn more about Swing to debug GUI.
-- [Processing] [Owned] Adding to sesmith5 backlog.
-- [Processing] [Processing] Found Swing tutorials at http://docs.oracle.com/javase/tutorial/uiswing/start/.
+- [Processing] klog] Learn more about Swing to debug GUI.
+- [Processing] ed] Adding to sesmith5 backlog.
+- [Processing] cessing] Found Swing tutorials at http://docs.oracle.com/javase/tutorial/uiswing/start/.
 * 5,Verifying,Calculating Wait Time,B,jdyoung2,sesmith5,false
-- [Verifying] [Backlog] Special carts are failing system tests associated with wait time.
-- [Verifying] [Owned] Adding to sesmith5 backlog.
-- [Verifying] [Processing] Replicated failure locally in unit test.
-- [Verifying] [Verifying] Implementation complete. Requires peer inspection.
+- [Verifying] klog] Special carts are failing system tests associated with wait time.
+- [Verifying] ed] Adding to sesmith5 backlog.
+- [Verifying] cessing] Replicated failure locally in unit test.
+- [Verifying] ifying] Implementation complete. Requires peer inspection.
 * 8,Done,Special Carts,F,jep,sesmith5,true
-- [Done] [Backlog] Special carts always choose the shortest special register line.
-- [Done] [Owned] Adding to sesmith5 backlog.
-- [Done] [Processing] Created hierarchy to prepare for other cart types.
-- [Done] [Verifying] Implementation complete. Requires peer inspection.
-- [Done] [Done] No problems found during inspection.
+- [Done] klog] Special carts always choose the shortest special register line.
+- [Done] ed] Adding to sesmith5 backlog.
+- [Done] cessing] Created hierarchy to prepare for other cart types.
+- [Done] ifying] Implementation complete. Requires peer inspection.
+- [Done] e] No problems found during inspection.
 * 10,Rejected,Flatbed carts,F,jep,unowned,false
-- [Rejected] [Backlog] Add flatbed carts to simulation.
-- [Rejected] [Owned] Rejected. Flatbed carts won't fit through physical register stations.
+- [Rejected] klog] Add flatbed carts to simulation.
+- [Rejected] ed] Rejected. Flatbed carts won't fit through physical register stations.
 # WolfScheduler
 * 2,Rejected,Weekly Repeat,F,sesmith5,unowned,false
-- [Rejected] [Backlog] Events should have a weekly repeat of every 1, 2, 3, or 4 weeks.
-- [Rejected] [Owned] Weekly repeat is unnecessary when creating ideal week.
+- [Rejected] klog] Events should have a weekly repeat of every 1, 2, 3, or 4 weeks.
+- [Rejected] ed] Weekly repeat is unnecessary when creating ideal week.
 * 5,Backlog,Add Event,F,sesmith5,unowned,false
-- [Backlog] [Backlog] Users can create events to identify places during their week where they have scheduled activities other than class.
+- [Backlog] klog] Users can create events to identify places during their week where they have scheduled activities other than class.
 * 6,Done,Add Course,F,sesmith5,jctetter,true
-- [Done] [Backlog] Users can add courses to their schedule.
-- [Done] [Owned] Assigning to jctetter.
-- [Done] [Processing] Creating Course class.
-- [Done] [Processing] Adding error checking on course name.
-- [Done] [Processing] Adding tests for Course.
-- [Done] [Verifying] Request peer review.
-- [Done] [Done] Updates meet requirements and test pass.
+- [Done] klog] Users can add courses to their schedule.
+- [Done] ed] Assigning to jctetter.
+- [Done] cessing] Creating Course class.
+- [Done] cessing] Adding error checking on course name.
+- [Done] cessing] Adding tests for Course.
+- [Done] ifying] Request peer review.
+- [Done] e] Updates meet requirements and test pass.
