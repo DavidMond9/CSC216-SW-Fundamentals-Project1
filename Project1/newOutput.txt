@@ -1,6 +1,6 @@
 # Test Product
 * 3,Owned,Test task 2,KA,sesmith,owner,false
-- [Owned] klog] note 2
-- [Owned] ed] note
+- [Owned] note 2
+- [Owned] note
 * 7,Backlog,Test task 1,B,sesmith5,unowned,false
-- [Backlog] klog] note 1
+- [Backlog] note 1
