@@ -75,7 +75,7 @@ public class ProductsReader {
 			return products;
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
-			throw new IllegalArgumentException("Illegal Argument Exception File Not Found.");
+			throw new IllegalArgumentException("Unable to load file.");
 		}
 
 		

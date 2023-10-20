@@ -66,6 +66,9 @@ public class BacklogManager {
 	 */
 	public void loadProduct(String productName) {
 		Product productToLoad = null;
+		if(currProduct == null) {
+			throw new IllegalArgumentException("Product not available.");
+		}
 		
 		for(int i = 0; i < products.size(); i++) {
 			if(productName.equals(products.get(i).getProductName())) {
